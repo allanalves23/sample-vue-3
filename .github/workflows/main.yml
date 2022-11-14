@@ -36,3 +36,4 @@ jobs:
         password: ${{ secrets.PASS }}
         localDir: "dist"
         remoteDir: "public_html"
+        forceSsl: true
