@@ -1,0 +1,38 @@
+name: github ci
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - master
+    - main
+  
+jobs:
+  ci:
+    name: Deploy to LW
+    runs-on: ubuntu-latest
+  
+    steps:
+    - name: Download files from the current repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v3.5.1
+      with:
+        node-version: 18.x
+        
+    - name: Install dependencies
+      run: |
+        npm i
+
+    - name: production build
+      run: |
+        npm run build
+        
+    - name: studies-lwftp-testing
+      uses: allanalves23/ftp-action-studies@0.0.2
+      with:
+        host: ${{ secrets.HOST }}
+        user: ${{ secrets.USER }}
+        password: ${{ secrets.PASS }}
+        localDir: "dist"
+        remoteDir: "public_html"
