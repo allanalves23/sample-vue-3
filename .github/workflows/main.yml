@@ -29,11 +29,9 @@ jobs:
         npm run build
         
     - name: studies-lwftp-testing
-      uses: allanalves23/ftp-action-studies@0.0.2
+      uses: allanalves23/ftp-action-studies@latest
       with:
         host: ${{ secrets.HOST }}
         user: ${{ secrets.USER }}
         password: ${{ secrets.PASS }}
         localDir: "dist"
-        remoteDir: "public_html"
-        forceSsl: true
