@@ -28,8 +28,8 @@ jobs:
       run: |
         npm run build
         
-    - name: studies-lwftp-testing
-      uses: allanalves23/ftp-action-studies@0.0.4
+    - name: FTP Deploy Locaweb
+      uses: locaweb/ftp-deploy@0.0.1
       with:
         host: ${{ secrets.HOST }}
         user: ${{ secrets.USER }}
